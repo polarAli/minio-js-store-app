@@ -25,13 +25,12 @@ var handlebars = require('express-handlebars').create({
 
 // Instantiate a minioClient Object with an endPoint, port & keys.
 var minioClient = new Minio.Client({
-  endPoint: 'play.minio.io',
-  port: 9000,
-  accessKey: 'Q3AM3UQ867SPQQA43P2F',
-  secretKey: 'zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG'
+  endPoint: process.env.MINIO_ENDPOINT,
+  accessKey: process.env.MINIO_ACCESS_KEY,
+  secretKey: process.env.MINIO_SECRET_KEY
 });
 
-var minioBucket = 'minio-store'
+var minioBucket = process.env.MINIO_BUCKET_NAME
 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
